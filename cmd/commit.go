@@ -16,7 +16,7 @@ var optionDescriptions = map[string]string{
 	"dry-run": "実際にはコミットを作成せずに、何がコミットされるかを確認します。\n使用例: git commit --dry-run",
 }
 
-var long =  `commitコマンドのヘルプを表示するコマンドです。
+var commitLong =  `commitコマンドのヘルプを表示するコマンドです。
 
 git commitコマンドは、現在の作業ディレクトリの変更を新しいコミットとして保存します。
 コミットは、プロジェクトの履歴において重要な単位であり、後で変更を元に戻すことができるポイントを作成します。
@@ -35,7 +35,7 @@ git commitコマンドは、現在の作業ディレクトリの変更を新し�
   git commit -a -m "変更を追加"
   git commit --amend -m "メッセージの修正"`
 
-var run = `git commit:
+var commitRun = `git commit:
 		
 git commitコマンドは、現在の作業ディレクトリの変更を新しいコミットとして保存します。
 コミットは、プロジェクトの履歴において重要な単位であり、後で変更を元に戻すことができるポイントを作成します。
@@ -58,11 +58,11 @@ git commitコマンドは、現在の作業ディレクトリの変更を新し�
 var commitCmd = &cobra.Command{
 	Use:   "commit",
 	Short: "commitコマンドのヘルプを表示するコマンドです。",
-	Long: long,
+	Long: commitLong,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			fmt.Println(run)
+			fmt.Println(commitRun)
 			return
 		}
 
