@@ -59,7 +59,6 @@ var commitCmd = &cobra.Command{
 	Use:   "commit",
 	Short: "commitコマンドのヘルプを表示するコマンドです。",
 	Long: commitLong,
-	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			fmt.Println(commitRun)
