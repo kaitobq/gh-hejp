@@ -10,11 +10,11 @@ import (
 )
 
 var resetOptionDescriptions = map[string]string{
-	"soft":   "--soft オプションは、インデックスと作業ツリーをそのままにしてHEADを指定したコミットに移動します。\n使用例: git reset --soft HEAD~1",
-	"mixed":  "--mixed オプションは、インデックスを指定したコミットにリセットしますが、作業ツリーは変更しません。\n使用例: git reset --mixed HEAD~1",
-	"hard":   "--hard オプションは、インデックスと作業ツリーの両方を指定したコミットにリセットします。\n使用例: git reset --hard HEAD~1",
-	"merge":  "--merge オプションは、競合していない場合にインデックスと作業ツリーをリセットします。\n使用例: git reset --merge",
-	"keep":   "--keep オプションは、競合していない場合に作業ツリーをそのままにしてインデックスをリセットします。\n使用例: git reset --keep",
+	"soft":   "--soft オプションは、インデックスと作業ツリーをそのままにしてHEADを指定したコミットに移動します。\n使用例: git reset --soft HEAD~1 (一つ前のコミットを取り消しますが、ファイルの変更はそのまま残ります)",
+	"mixed":  "--mixed オプションは、インデックスを指定したコミットにリセットしますが、作業ツリーは変更しません。\n使用例: git reset --mixed HEAD~1 (一つ前のコミットを取り消し、変更はステージングされます)",
+	"hard":   "--hard オプションは、インデックスと作業ツリーの両方を指定したコミットにリセットします。\n使用例: git reset --hard HEAD~1 (一つ前のコミットを取り消し、すべての変更を破棄します)",
+	"merge":  "--merge オプションは、競合していない場合にインデックスと作業ツリーをリセットします。\n使用例: git reset --merge (マージ中に使用し、競合がない場合にリセットします)",
+	"keep":   "--keep オプションは、競合していない場合に作業ツリーをそのままにしてインデックスをリセットします。\n使用例: git reset --keep (変更を保持しつつリセットしますが、競合がある場合はエラーを返します)",
 }
 
 var resetLong = `resetコマンドのヘルプを表示するコマンドです。
@@ -32,11 +32,11 @@ git resetコマンドは、HEADを指定した位置にリセットし、イン�
   --keep     インデックスをリセットし、作業ツリーをそのままにしますが、競合がある場合はリセットしません
 
 例:
-  git reset --soft HEAD~1
-  git reset --mixed HEAD~1
-  git reset --hard HEAD~1
-  git reset --merge
-  git reset --keep`
+  git reset --soft HEAD~1     # 一つ前のコミットを取り消しますが、ファイルの変更はそのまま残ります
+  git reset --mixed HEAD~1    # 一つ前のコミットを取り消し、変更はステージングされます
+  git reset --hard HEAD~1     # 一つ前のコミットを取り消し、すべての変更を破棄します
+  git reset --merge           # マージ中に使用し、競合がない場合にリセットします
+  git reset --keep            # 変更を保持しつつリセットしますが、競合がある場合はエラーを返します`
 
 var resetRun = `git reset:
 
@@ -53,11 +53,11 @@ git resetコマンドは、HEADを指定した位置にリセットし、イン�
   --keep     インデックスをリセットし、作業ツリーをそのままにしますが、競合がある場合はリセットしません
 
 例:
-  git reset --soft HEAD~1
-  git reset --mixed HEAD~1
-  git reset --hard HEAD~1
-  git reset --merge
-  git reset --keep`
+  git reset --soft HEAD~1     # 一つ前のコミットを取り消しますが、ファイルの変更はそのまま残ります
+  git reset --mixed HEAD~1    # 一つ前のコミットを取り消し、変更はステージングされます
+  git reset --hard HEAD~1     # 一つ前のコミットを取り消し、すべての変更を破棄します
+  git reset --merge           # マージ中に使用し、競合がない場合にリセットします
+  git reset --keep            # 変更を保持しつつリセットしますが、競合がある場合はエラーを返します`
 
 // resetCmd represents the reset command
 var resetCmd = &cobra.Command{

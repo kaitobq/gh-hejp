@@ -14,6 +14,8 @@ var exOptionDescriptions = map[string]string{
 	"2": "直前のコミットに変更を追加する\n\n使用例:\n\n// 追加したい変更がステージングされている状態で \n  git commit --amend --no-edit",
 	"3": "直前のコミットメッセージを修正する\n\n使用例:\n  git commit --amend",
 	"4": "ブランチを間違えた\n\n使用例:\n  git stash\n  git checkout [正しいブランチ名]\n  git stash pop\n\n  これにより差分を別ブランチに移動することができます。",
+	"5": "リモートブランチを削除する\n\n使用例:\n  git push origin --delete [リモートブランチ名]",
+	"6": "マージ時のコンフリクトを手動で解決した後にマージする\n\n使用例:\n  git add <ファイル名>\ngit merge --continue",
 }
 
 var exLong = `exコマンドの使用例を表示するコマンドです。`
@@ -22,7 +24,9 @@ var exRun = `使用例：
 1. コミットの取消
 2. 直前のコミットに変更を追加する
 3. 直前のコミットメッセージを修正する
-4. コミットするブランチを間違えた`
+4. コミットするブランチを間違えた
+5. リモートブランチを削除する
+6. マージ時のコンフリクトを手動で解決した後にマージする`
 
 // exCmd represents the ex command
 var exCmd = &cobra.Command{
